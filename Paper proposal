@@ -17,7 +17,7 @@ it is charm of Daoism.
 [1]single-turn flaw: They treat Bazi as a single-turn, static QA task (e.g., "Given this chart, did this person get promoted in 2024? Yes/No"). They complete the computer science project well while sacrificing too much real world scenario.
 In real practice, a clash (冲) or harm (害) is an energy movement (气势的扰动). This movement can manifest in different ways depending on the person's environment—it could mean a job change, a move to a new house, or minor surgery. Forcing the AI to predict a single, rigid event ignores the probabilistic and multi-faceted nature of metaphysics.
 [2]They feed a chart to an LLM and expect a perfect, final reading immediately. But is Bazi practice, we have "Practitioner-in-the-loop", A professional practitioner never reads a chart in a vacuum. They make an initial assessment, ask 1 or 2 calibration questions about the client's past (e.g., "Did you experience a major change in 2018?"), and then adjust their interpretation of the chart's strength and "Useful God" (用神) based on that ground-truth feedback.
-[3] They score the LLM on whether it selected the correct multiple-choice option, even if the model's inner reasoning path was completely wrong.  If an AI gets the right answer by guessing or using shallow textual clues, it hasn't actually "learned" the metaphysical system.
+[3]They score the LLM on whether it selected the correct multiple-choice option, even if the model's inner reasoning path was completely wrong.  If an AI gets the right answer by guessing or using shallow textual clues, it hasn't actually "learned" the metaphysical system.
 
 3, what we have
   ->Haohua's stupid head but sufficient cases
