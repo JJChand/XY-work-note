@@ -1,0 +1,4 @@
+1，Problem state and motivation:
+  ->There are some knwoledges system that are: "abstract, highly symbolic, logically non-linear, highly relational, holistic", could not be easily ingested by existed solutions, neither LLM or KAG(will be dicusssed). In 
+practice, one may constrcut a specific knowledge base (RAG or KAG) for LLM to search, is a classic solutions
+  ->Taking the traditional, highly symbolic systme--Bazi, as an example. Its system is symbolic and abstract, 
