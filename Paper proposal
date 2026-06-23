@@ -1,4 +1,51 @@
 1，Problem state and motivation:
   ->There are some knwoledges system that are: "abstract, highly symbolic, logically non-linear, highly relational, holistic", could not be easily ingested by existed solutions, neither LLM or KAG(will be dicusssed). In 
 practice, one may constrcut a specific knowledge base (RAG or KAG) for LLM to search, is a classic solutions
-  ->Taking the traditional, highly symbolic systme--Bazi, as an example. Its system is symbolic and abstract, 
+  ->Taking the traditional, highly symbolic systme--Bazi, as an example. Its system is symbolic and abstract, say for example： one symbol named 子（zi），another named 午（wu）, even though we putting away the 十神（Ten Gods），
+There are still 五行（5 elementary representation) behind them and there is symbolic relation between zi and wu (zi-wu clash; 子午冲）. First, it is hard to defined when clashing is good (sometime clashing is good, combine is bad, 冲而为喜，合成反忌）
+second, zi-wu clash can perform very differently depending whether there is chou(丑），wei(未）nearby, or even exists. RAG and even KAG can not understand the symbolic and conditional relationship well. Somehow it is 1+1=3 problem, we say
+it is charm of Daoism.
+  ->RAG, is obviously weak to tackle with it due the construction method, while KAG still shows weak capability to solve it, for following reasons: 
+[1]In standard KAG, knwoledge graph edges are relatively static, say "if A is married to B" the relationship remains unless there is explicit update. But Bazi requires reasoning across 3 distinct temporal scale simultaneously: Natal Chart(原盘），Decadal luck pillars(大运），Annual pillars(流年）, a relation operates differently due to the changes of pillars.
+[2]Traditional KGs assumes additive, linear logic, say "if A is related to B and B is related to C, then A is related to C as well". But Bazi does not, say zi-chou combination returns Earth（子丑合化土） under certain seasonal condition, and clash otherwise.
+[3]Retrievers usually operate either entirely on dense text embeddings (vector space) or entirely on symbolic entity matches (graph space). But is Bazi，one symbolic interation can means a lot ("lost job," "suffered depression," "career pivot"; 一字万象）
+
+2, What we need to do
+  ->We do not regard Bazi as some chinese fortune telling, by learning the rule of Bazi, what we care is that: can we propose a solution st. it can solve this kind of problems that are abstract, highly symbolic, logically non-linear, highly relational, holistic.
+  ->It is computer science project, what makes project or even paper outstanding is the settlement of experiment, therefore we need a benchmark.
+  ->The current Bazi paper(discovered by Haohua)
+[1]single-turn flaw: They treat Bazi as a single-turn, static QA task (e.g., "Given this chart, did this person get promoted in 2024? Yes/No"). They complete the computer science project well while sacrificing too much real world scenario.
+In real practice, a clash (冲) or harm (害) is an energy movement (气势的扰动). This movement can manifest in different ways depending on the person's environment—it could mean a job change, a move to a new house, or minor surgery. Forcing the AI to predict a single, rigid event ignores the probabilistic and multi-faceted nature of metaphysics.
+[2]They feed a chart to an LLM and expect a perfect, final reading immediately. But is Bazi practice, we have "Practitioner-in-the-loop", A professional practitioner never reads a chart in a vacuum. They make an initial assessment, ask 1 or 2 calibration questions about the client's past (e.g., "Did you experience a major change in 2018?"), and then adjust their interpretation of the chart's strength and "Useful God" (用神) based on that ground-truth feedback.
+[3] They score the LLM on whether it selected the correct multiple-choice option, even if the model's inner reasoning path was completely wrong.  If an AI gets the right answer by guessing or using shallow textual clues, it hasn't actually "learned" the metaphysical system.
+
+3, what we have
+  ->Haohua's stupid head but sufficient cases
+  ->Handsome Harrison and his strong head
+  ->Haohua's friend who is master in Bazi
+
+4, Solutions proposed by Haohua
+  INFO RETRIEVAL(to tackle with KAG)
+    ->Maybe we can make the knowledge graph dynamic? if it can be multi-tiered, time-varing, and can transformed dynamically. [somehow it can apply on financial risk assessment]
+    ->Can the logic be non-linear?
+    ->Maybe the symbolic representation can be a "SPACE": do the dual matching, not only match the symbolic representation, but also the semantic intent.
+  The product prototype
+    ->Hypothesis generation
+    ->Keep probing, combined with hypothesis generation, dynamically modify the internal graph edges
+
+
+5, Experiment and benchmark (Unmatured idea from Haohua) 
+overall idea: think day day and night night, This is a NLP project so it is impossible to quantify everything, otherwise we must sacrifice too much, causing "reductionism"， how about we make it 2 method experiment:
+
+Method 1: Multi-turn Backtesting
+  ->Main idea: part 1(birth)--part 2(ground truth)--part 3(target issue),  run three different experiments on your database of cases and measure the prediction accuracy of the target event (part 3)
+    ->Experiment 1: Give a case with only birthday to LLM(part 1), predict part 3
+    ->Experiment 2: Give KAG as well, predict part 3
+    ->Experiment 3: first give part 1----->probing----->programmatically feed to ground truth (part 2)----->update internal graph----->predict part 3
+
+Method 2: Simulator
+  ->Main idea: Program another LLM and client simulator
+    ->Taking all cases, feeding all ground truth to LLM for each case, telling the LLM "Do not use your intelligence, answer the question with only using the private groud truth"
+    ->Let the System(our product) chat with LLM, for 2-3 turns QA
+    ->The product analyze the current life or something else
+    ->(optional) Maybe we need 3rd LLM to be the judge
